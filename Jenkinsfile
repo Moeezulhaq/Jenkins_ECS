@@ -22,10 +22,10 @@ pipeline {
 
   stages { 
 
-        stage('Login') {
+        stage('Login to ECR') {
 
         steps {
-        sh "docker login -u AWS -p aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y2a9o9h4"
+        sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 489994096722.dkr.ecr.us-east-1.amazonaws.com"
         }
     }
 
@@ -39,14 +39,14 @@ pipeline {
         stage('Tag Image') {
 
         steps {
-        sh "docker tag testingmoeez:latest public.ecr.aws/y2a9o9h4/testingmoeez:latest"    
+        sh "docker tag testingmoeez:latest 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
         }
     }
 
         stage('Push Image') {
 
         steps {
-        sh "docker push public.ecr.aws/y2a9o9h4/testingmoeez:latest"    
+        sh "docker push 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
         }
     }
   }
