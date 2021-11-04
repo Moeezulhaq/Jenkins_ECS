@@ -49,6 +49,14 @@ pipeline {
         sh "docker push 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
         }
     }
+        stage('Task-definition') {
+
+        steps {
+        sh "aws ecs register-task-definition --cli-input-json file://taskdef.json"    
+        }
+    }  
+  
+  
   }
 }
 //   post
