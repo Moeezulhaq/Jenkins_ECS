@@ -49,13 +49,8 @@ pipeline {
         sh "docker push public.ecr.aws/y2a9o9h4/testingmoeez:latest"    
         }
     }
-
-
-
-
-
   }
-
+}
 //   post
 //   {
 //       always
