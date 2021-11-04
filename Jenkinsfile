@@ -54,8 +54,7 @@ pipeline {
         steps {
         sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
         }
-    }  
-  
+    }    
   }
 }
 //   post
