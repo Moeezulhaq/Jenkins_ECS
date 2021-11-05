@@ -1,5 +1,5 @@
 {
-    "taskDefinition": "family:revision-number",
+    "taskDefinition": "",
     "cluster": "my-cluster",
 
     "desiredCount": 1,
