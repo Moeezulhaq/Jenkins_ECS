@@ -1,5 +1,5 @@
 {
-    "taskDefinition": "",
+    "taskDefinition": "sample-website",
     "cluster": "my-cluster",
 
     "desiredCount": 1,
@@ -15,7 +15,7 @@
                 "subnet-2"
             ],
             "securityGroups": [
-                "security-group"
+                "default"
             ],
             "assignPublicIp": "ENABLED"
         }
