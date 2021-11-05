@@ -63,12 +63,12 @@ pipeline {
         }
     }    
     
-        stage('create-service') {
+    //     stage('create-service') {
 
-        steps {
-        sh "aws ecs run-task --cluster mycluster --task-definition taskdef.json --region us-east-1"    
-        }
-    }
+    //     steps {
+    //     sh "aws ecs run-task --cluster mycluster --task-definition taskdef.json --region us-east-1"    
+    //     }
+    // }
   
     //     stage('describe-services') {
 
