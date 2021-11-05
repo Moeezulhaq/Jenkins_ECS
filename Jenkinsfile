@@ -59,7 +59,7 @@ pipeline {
         stage('create-cluster') {
 
         steps {
-        sh "aws ecs create-cluster --cluster-name mycluster"    
+        sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
         }
     }    
     
