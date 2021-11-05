@@ -70,7 +70,7 @@ pipeline {
             expression { params.ACTION == 'delete-cluster' }
         }
         steps {
-        sh "aws ecs delete-cluster --cluster Jenkins-moeez --region us-east-1"    
+        sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
         }
     }
   
