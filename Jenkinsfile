@@ -66,7 +66,7 @@ pipeline {
         stage('create-service') {
 
         steps {
-        sh "aws ecs run-task --cluster mycluster --task-definition taskdef.json"    
+        sh "aws ecs run-task --cluster mycluster --task-definition taskdef.json --region us-east-1"    
         }
     }
   
