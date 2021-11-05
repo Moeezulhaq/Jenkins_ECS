@@ -18,7 +18,7 @@ pipeline {
 //       choices: ['us-east-1','us-east-2'],
 //       description: 'AWS Account Region'
 //     )
-//   }
+  }
 
   stages { 
 
@@ -82,7 +82,6 @@ pipeline {
     // }
   
   
-  }
   }
 }
 //   post
