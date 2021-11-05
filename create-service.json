@@ -9,7 +9,7 @@
         "type": "EXTERNAL"
     },
     "networkConfiguration": ""
-        // "awsvpcConfiguration": {
+        "awsvpcConfiguration": ""
         //     "subnets": [
         //         "subnet-1",
         //         "subnet-2"
