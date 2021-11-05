@@ -9,15 +9,4 @@
         "type": "EXTERNAL"
     },
     "networkConfiguration": ""
-        "awsvpcConfiguration": ""
-        //     "subnets": [
-        //         "subnet-1",
-        //         "subnet-2"
-        //     ],
-        //     "securityGroups": [
-        //         "default"
-        //     ],
-        //     "assignPublicIp": "ENABLED"
-        // }
-    
 }
