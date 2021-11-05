@@ -49,17 +49,24 @@ pipeline {
         sh "docker push 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
         }
     }
-    //     stage('Task-definition') {
+        stage('Task-definition') {
 
-    //     steps {
-    //     sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
-    //     }
-    // }    
+        steps {
+        sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
+        }
+    }    
   
+        stage('create-cluster') {
+
+        steps {
+        sh "aws ecs create-cluster --cluster-name mycluster"    
+        }
+    }    
+    
         stage('create-service') {
 
         steps {
-        sh "aws ecs create-cluster --cluster-name my-service --cli-input-json file://create-service.json --region us-east-1"    
+        sh "aws ecs create-service --service-name my-service --cli-input-json file://create-service.json --region us-east-1"    
         }
     }
   

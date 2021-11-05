@@ -1,6 +1,6 @@
 {
     "taskDefinition": "sample-website",
-    "cluster": "my-cluster",
+    "cluster": "mycluster",
 
     "desiredCount": 1,
     "launchType": "FARGATE",
