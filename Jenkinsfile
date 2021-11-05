@@ -1,11 +1,11 @@
 pipeline {
   agent any
-//   parameters {
-//     choice(
-//       name: 'ACTION',
-//       choices: ['deploy-stack', 'update-stack', 'delete-stack'],
-//       description: 'CloudFormation Actions'
-//     )
+  parameters {
+    choice(
+      name: 'ACTION',
+      choices: ['create-cluster', 'update-cluster', 'delete-cluster'],
+      description: 'CloudFormation Actions'
+    )
 //     string(name: 'STACK_NAME', defaultValue: 'example-stack', description: 'Enter the CloudFormation Stack Name.')
 //     string(name: 'PARAMETERS_FILE_NAME', defaultValue: 'parameters/example-stack-parameters.properties', description: 'Enter the Parameters File Name (Must contain file extension type *.properties)')
 //     string(name: 'TEMPLATE_NAME', defaultValue: 'Word.yml', description: 'Enter the CloudFormation Template Name (Must contain file extension type *.yaml)')
@@ -57,18 +57,22 @@ pipeline {
     }    
   
         stage('create-cluster') {
-
+        when {
+            expression { params.ACTION == 'create-cluster' }
+        }
         steps {
         sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
         }
     }    
     
-    //     stage('create-service') {
-
-    //     steps {
-    //     sh "aws ecs run-task --cluster mycluster --task-definition taskdef.json --region us-east-1"    
-    //     }
-    // }
+        stage('delete-service') {
+        when {
+            expression { params.ACTION == 'delete-cluster' }
+        }
+        steps {
+        sh "aws ecs delete-cluster --cluster-name mycluster"    
+        }
+    }
   
     //     stage('describe-services') {
 
