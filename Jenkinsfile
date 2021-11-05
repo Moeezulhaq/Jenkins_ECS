@@ -55,6 +55,23 @@ pipeline {
         sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
         }
     }    
+  
+        stage('create-service') {
+
+        steps {
+        sh "aws ecs create-service --service-name my-service --cli-input-json file://create-service.json"    
+        }
+    }
+  
+        stage('describe-services') {
+
+        steps {
+        sh "aws ecs describe-services --cluster jenkins-deployment --services service-name"    
+        }
+    }
+  
+  
+  
   }
 }
 //   post
