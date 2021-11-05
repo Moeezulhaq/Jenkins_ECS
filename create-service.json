@@ -8,7 +8,7 @@
     "deploymentController": {
         "type": "EXTERNAL"
     },
-    "networkConfiguration": {
+    "networkConfiguration": ""
         // "awsvpcConfiguration": {
         //     "subnets": [
         //         "subnet-1",
@@ -19,5 +19,5 @@
         //     ],
         //     "assignPublicIp": "ENABLED"
         // }
-    }
+    
 }
