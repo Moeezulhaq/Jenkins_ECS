@@ -59,14 +59,14 @@ pipeline {
         stage('create-service') {
 
         steps {
-        sh "aws ecs create-service --service-name my-service --cli-input-json file://create-service.json"    
+        sh "aws ecs create-service --service-name my-service --cli-input-json file://create-service.json --region us-east-1"    
         }
     }
   
         stage('describe-services') {
 
         steps {
-        sh "aws ecs describe-services --cluster jenkins-deployment --services service-name"    
+        sh "aws ecs describe-services --cluster jenkins-deployment --services service-name --region us-east-1"    
         }
     }
   
