@@ -2,7 +2,7 @@
     "executionRoleArn": "arn:aws:iam::489994096722:role/Moeez_ssm",
     "containerDefinitions": [
         {
-            "name": "sample-website",
+            "name": "nginx-website",
             "image": "489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez",
             "essential": true,
             "portMappings": [
