@@ -77,7 +77,7 @@ pipeline {
         stage('Create-task-set') {
 
         steps {
-        sh "aws ecs create-task-set --cluster jenkins-deployment --cli-input-json file://TaskSet.template.json"    
+        sh "aws ecs create-task-set --cluster jenkins-deployment --cli-input-json file://TaskSet.template.json --region us-east-1"    
         }
     }
 
