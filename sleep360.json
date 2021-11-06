@@ -1,7 +1,7 @@
 {
     "containerDefinitions": [
         {
-            "name": "sleep",
+            "name": "nginxsite",
             "image": "489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez",
             "cpu": 10,
             "command": [
