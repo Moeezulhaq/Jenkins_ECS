@@ -61,7 +61,7 @@ pipeline {
             expression { params.ACTION == 'create-cluster' }
         }
         steps {
-        sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
+        sh "aws ecs create-cluster --cluster-name mycluster --task-definition nginx-website --launch-type FARGATE  --region us-east-1"    
         }
     }    
     
@@ -74,19 +74,19 @@ pipeline {
         }
     }
 
-        stage('Create-service') {
+    //     stage('Create-service') {
 
-        steps {
-        sh "aws ecs create-service --cluster mycluster --cli-input-json file://TaskSet.template.json --region us-east-1"    
-        }
-    }
+    //     steps {
+    //     sh "aws ecs create-service --cluster mycluster --cli-input-json file://TaskSet.template.json --region us-east-1"    
+    //     }
+    // }
 
-        stage('Create-task-set') {
+    //     stage('Create-task-set') {
 
-        steps {
-        sh "aws ecs create-task-set --cluster mycluster --cli-input-json file://create-service.json --region us-east-1"    
-        }
-    }
+    //     steps {
+    //     sh "aws ecs create-task-set --cluster mycluster --cli-input-json file://create-service.json --region us-east-1"    
+    //     }
+    // }
 
   
   }
