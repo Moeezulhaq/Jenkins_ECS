@@ -77,7 +77,7 @@ pipeline {
         stage('Create-service') {
 
         steps {
-        sh "aws ecs aws ecs create-service --cluster mycluster --cli-input-json file://TaskSet.template.json --region us-east-1"    
+        sh "aws ecs create-service --cluster mycluster --cli-input-json file://TaskSet.template.json --region us-east-1"    
         }
     }
 
