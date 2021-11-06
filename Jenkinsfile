@@ -77,7 +77,7 @@ pipeline {
         stage('Create-service') {
 
         steps {
-        sh "aws ecs create-service --service-name testing --cluster mycluster --task-definition nginxsite --launch-type FARGATE --desired-count 2  --region us-east-1"    
+        sh "aws ecs create-service --service-name testing --cluster mycluster --task-definition arn:aws:ecs:us-east-1:489994096722:task-definition/sleep360:2 --launch-type FARGATE --desired-count 2  --region us-east-1"    
         }
     }
 
