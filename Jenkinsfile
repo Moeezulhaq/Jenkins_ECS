@@ -65,7 +65,7 @@ pipeline {
         }
     }    
     
-        stage('delete-service') {
+        stage('delete-cluster') {
         when {
             expression { params.ACTION == 'delete-cluster' }
         }
@@ -77,7 +77,7 @@ pipeline {
         stage('Create-service') {
 
         steps {
-        sh "aws ecs create-service --cluster mycluster --task-definition nginx-website --launch-type FARGATE --region us-east-1"    
+        sh "aws ecs create-service --service-name testing --cluster mycluster --task-definition nginx-website --launch-type FARGATE --region us-east-1"    
         }
     }
 
