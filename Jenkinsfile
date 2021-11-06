@@ -61,7 +61,7 @@ pipeline {
             expression { params.ACTION == 'create-cluster' }
         }
         steps {
-        sh "aws ecs create-cluster --cluster-name mycluster --task-definition nginx-website --launch-type FARGATE  --region us-east-1"    
+        sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
         }
     }    
     
