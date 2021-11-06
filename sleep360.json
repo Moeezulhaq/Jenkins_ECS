@@ -1,0 +1,16 @@
+{
+    "containerDefinitions": [
+        {
+            "name": "sleep",
+            "image": "489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez",
+            "cpu": 10,
+            "command": [
+                "sleep",
+                "360"
+            ],
+            "memory": 10,
+            "essential": true
+        }
+    ],
+    "family": "sleep360"
+}
