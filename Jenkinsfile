@@ -74,12 +74,12 @@ pipeline {
         }
     }
 
-    //     stage('describe-services') {
+        stage('Create-task-set') {
 
-    //     steps {
-    //     sh "aws ecs describe-services --cluster jenkins-deployment --services service-name --region us-east-1"    
-    //     }
-    // }
+        steps {
+        sh "aws ecs create-task-set --cluster jenkins-deployment --cli-input-json file://TaskSet.template.json "    
+        }
+    }
 
   
   }
