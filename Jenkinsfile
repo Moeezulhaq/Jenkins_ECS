@@ -77,7 +77,7 @@ pipeline {
         stage('Create-service') {
 
         steps {
-        sh "aws ecs create-service --service-name testing --cluster mycluster --task-definition nginx-website --launch-type FARGATE --cli-input-json file://create-service.json --region us-east-1"    
+        sh "aws ecs create-service --service-name testing --cluster mycluster --task-definition  --launch-type FARGATE --cli-input-json file://create-service.json --region us-east-1"    
         }
     }
 
