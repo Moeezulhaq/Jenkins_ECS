@@ -74,10 +74,17 @@ pipeline {
         }
     }
 
+        stage('Create-service') {
+
+        steps {
+        sh "aws ecs aws ecs create-service --cluster mycluster --cli-input-json file://TaskSet.template.json --region us-east-1"    
+        }
+    }
+
         stage('Create-task-set') {
 
         steps {
-        sh "aws ecs create-task-set --cluster jenkins-deployment --cli-input-json file://TaskSet.template.json --region us-east-1"    
+        sh "aws ecs create-task-set --cluster mycluster --cli-input-json file://create-service.json --region us-east-1"    
         }
     }
 
