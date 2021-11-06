@@ -73,14 +73,14 @@ pipeline {
         sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
         }
     }
-  
+
     //     stage('describe-services') {
 
     //     steps {
     //     sh "aws ecs describe-services --cluster jenkins-deployment --services service-name --region us-east-1"    
     //     }
     // }
-  
+
   
   }
 }
