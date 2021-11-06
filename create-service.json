@@ -1,5 +1,5 @@
 {
-    "taskDefinition": "sample-website",
+    "taskDefinition": "",
     "cluster": "mycluster",
 
     "desiredCount": 1,
