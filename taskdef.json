@@ -1,6 +1,7 @@
 {
     "family": "sample-fargate", 
     "networkMode": "awsvpc", 
+    "taskRoleArn": "arn:aws:iam::489994096722:role/ecsfargate",
     "execution_role_arn": "arn:aws:iam::489994096722:role/Moeez_ssm" ,
     "containerDefinitions": [
         {
