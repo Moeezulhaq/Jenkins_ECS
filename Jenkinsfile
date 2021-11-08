@@ -78,7 +78,7 @@ pipeline {
         stage('run-task') {
 
         steps {
-        sh "aws ecs run-task --cluster default --task-definition sample-fargate:latest"    
+        sh "aws ecs run-task --cluster default --task-definition sample-fargate:latest --region us-east-1"    
         }
     }
 
