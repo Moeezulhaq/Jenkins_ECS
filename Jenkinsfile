@@ -29,57 +29,57 @@ pipeline {
         }
     }
 
-        stage('Build Image') {
+    //     stage('Build Image') {
 
-        steps {
-        sh "docker build -t testingmoeez ."    
-        }
-    }
+    //     steps {
+    //     sh "docker build -t testingmoeez ."    
+    //     }
+    // }
 
-        stage('Tag Image') {
+    //     stage('Tag Image') {
 
-        steps {
-        sh "docker tag testingmoeez:latest 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
-        }
-    }
+    //     steps {
+    //     sh "docker tag testingmoeez:latest 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
+    //     }
+    // }
 
-        stage('Push Image') {
+    //     stage('Push Image') {
 
-        steps {
-        sh "docker push 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
-        }
-    }
-        stage('Task-definition') {
+    //     steps {
+    //     sh "docker push 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
+    //     }
+    // }
+    //     stage('Task-definition') {
 
-        steps {
-        sh "aws ecs register-task-definition --cli-input-json file://sleep360.json --region us-east-1"    
-        }
-    }    
+    //     steps {
+    //     sh "aws ecs register-task-definition --cli-input-json file://sleep360.json --region us-east-1"    
+    //     }
+    // }    
   
-        stage('create-cluster') {
-        when {
-            expression { params.ACTION == 'create-cluster' }
-        }
-        steps {
-        sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
-        }
-    }    
+    //     stage('create-cluster') {
+    //     when {
+    //         expression { params.ACTION == 'create-cluster' }
+    //     }
+    //     steps {
+    //     sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
+    //     }
+    // }    
     
-        stage('delete-cluster') {
-        when {
-            expression { params.ACTION == 'delete-cluster' }
-        }
-        steps {
-        sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
-        }
-    }
+    //     stage('delete-cluster') {
+    //     when {
+    //         expression { params.ACTION == 'delete-cluster' }
+    //     }
+    //     steps {
+    //     sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
+    //     }
+    // }
 
-        stage('Create-service') {
+    //     stage('Create-service') {
 
-        steps {
-        sh "aws ecs create-service --service-name testing --cluster mycluster --task-definition arn:aws:ecs:us-east-1:489994096722:task-definition/sleep360:2 --launch-type FARGATE --desired-count 2  --region us-east-1"    
-        }
-    }
+    //     steps {
+    //     sh "aws ecs create-service --service-name testing --cluster mycluster --task-definition arn:aws:ecs:us-east-1:489994096722:task-definition/sleep360:2 --launch-type FARGATE --desired-count 2  --region us-east-1"    
+    //     }
+    // }
 
     //     stage('Create-task-set') {
 
