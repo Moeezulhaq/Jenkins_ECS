@@ -16,8 +16,6 @@
             ], 
             "essential": true, 
             "entryPoint": [
-                "sh",
-		"-c"
             ], 
             "command": [
             ]
