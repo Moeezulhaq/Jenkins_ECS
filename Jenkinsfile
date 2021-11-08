@@ -75,12 +75,12 @@ pipeline {
     }
 
 
-    //     stage('Create-service') {
+        stage('run-task') {
 
-    //     steps {
-    //     sh "aws ecs create-service --service-name testing --cluster mycluster --task-definition  --launch-type FARGATE --desired-count 2  --region us-east-1"    
-    //     }
-    // }
+        steps {
+        sh "aws ecs run-task --cluster default --task-definition sample-fargate:latest"    
+        }
+    }
 
     //     stage('Create-task-set') {
 
