@@ -29,12 +29,12 @@ pipeline {
         }
     }
 
-    //     stage('Build Image') {
+        stage('Build Image') {
 
-    //     steps {
-    //     sh "docker build -t testingmoeez ."    
-    //     }
-    // }
+        steps {
+        sh "docker build -t testingmoeez ."    
+        }
+    }
 
     //     stage('Tag Image') {
 
