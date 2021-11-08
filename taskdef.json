@@ -1,8 +1,8 @@
 {
     "family": "sample-fargate", 
     "networkMode": "awsvpc", 
-    "taskRoleArn": "arn:aws:iam::489994096722:role/ecsfargate",
-    "executionRoleArn": "arn:aws:iam::489994096722:role/Moeez_ssm" ,
+    "taskRoleArn": "aarn:aws:iam::489994096722:role/ecsfargatetrust",
+    "executionRoleArn": "arn:aws:iam::489994096722:role/ecsfargatetrust" ,
     "containerDefinitions": [
         {
             "name": "fargate-app", 
