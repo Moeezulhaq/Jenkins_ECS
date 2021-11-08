@@ -36,12 +36,12 @@ pipeline {
         }
     }
 
-    //     stage('Tag Image') {
+        stage('Tag Image') {
 
-    //     steps {
-    //     sh "docker tag testingmoeez:latest 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
-    //     }
-    // }
+        steps {
+        sh "docker tag testingmoeez:latest 489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez:latest"    
+        }
+    }
 
     //     stage('Push Image') {
 
