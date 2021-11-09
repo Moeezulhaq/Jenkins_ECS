@@ -75,19 +75,19 @@ pipeline {
     }
 
 
-        stage('run-task') {
-
-        steps {
-        sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --count 1 --region us-east-1"    
-        }
-    }
-
-    //     stage('Create-task-set') {
+    //     stage('run-task') {
 
     //     steps {
-    //     sh "aws ecs create-task-set --cluster mycluster --cli-input-json file://create-service.json --region us-east-1"    
+    //     sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --count 1 --region us-east-1"    
     //     }
     // }
+
+        stage('Create-task-set') {
+
+        steps {
+        sh "aws ecs create-task-set --cluster mycluster --cli-input-json file://create-service.json --region us-east-1"    
+        }
+    }
 
   
   }

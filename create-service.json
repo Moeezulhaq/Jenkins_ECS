@@ -1,9 +1,9 @@
 {
-    "taskDefinition": "",
+    "taskDefinition": "sample-fargate",
     "cluster": "mycluster",
 
     "desiredCount": 1,
-    "launchType": "",
+    "launchType": "FARGATE",
     "schedulingStrategy": "REPLICA",
     "deploymentController": {
         "type": "EXTERNAL"
