@@ -1,5 +1,5 @@
 {
-    "taskDefinition": "sample-fargate",
+    "taskDefinition": "sample-app",
     "launchType": "FARGATE",
     "networkConfiguration": {
         "awsvpcConfiguration": {

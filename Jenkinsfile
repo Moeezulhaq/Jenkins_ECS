@@ -53,7 +53,7 @@ pipeline {
         stage('Task-definition') {
 
         steps {
-        sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
+        sh "aws ecs register-task-definition --cli-input-json file://taskdefi.json --region us-east-1"    
         }
     }    
   
@@ -76,25 +76,25 @@ pipeline {
     }
 
 
-    // //     stage('create-service') {
-
-    // //     steps {
-    // //     sh "aws ecs create-service --cluster mycluster --service-name MyService --desired-count 2 --cli-input-json file://service.defination.json --region us-east-1"    
-    // //     }
-    // // }
-
-    // //     stage('Create-task-set') {
-
-    // //     steps {
-    // //     sh "aws ecs create-task-set --cluster mycluster --service MyService --task-definition sample-fargate:11 --network-configuration awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4],securityGroups=[sg-0541867ccac96203a],assignPublicIp=ENABLED} --cli-input-json file://TaskSet.template.json --region us-east-1"    
-    // //     }
-    // // }
-        stage('task-set') {
+        stage('create-service') {
 
         steps {
-        sh " aws ecs create-service --cluster mycluster --service-name myservice --task-definition sample-app --load-balancers loadBalancerName=ecs-alb,containerName=app,containerPort=80 --role ecsServiceRole --desired-count 0"    
+        sh "aws ecs create-service --cluster mycluster --service-name MyService --desired-count 2 --cli-input-json file://service.defination.json --region us-east-1"    
         }
     }
+
+    //     stage('Create-task-set') {
+
+    //     steps {
+    //     sh "aws ecs create-task-set --cluster mycluster --service MyService --task-definition sample-app --network-configuration awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4],securityGroups=[sg-0541867ccac96203a],assignPublicIp=ENABLED} --cli-input-json file://TaskSet.template.json --region us-east-1"    
+    //     }
+    // }
+    //     stage('task-set') {
+
+    //     steps {
+    //     sh " aws ecs create-service --cluster mycluster --service-name myservice --task-definition sample-app --load-balancers loadBalancerName=ecs-alb,containerName=app,containerPort=80 --role ecsServiceRole --desired-count 0"    
+    //     }
+    // }
   
   }
 }
