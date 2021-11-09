@@ -7,7 +7,7 @@ pipeline {
       description: 'CloudFormation Actions'
     )
     choice(
-      name: 'VPCA',
+      name: 'VPC',
       choices: ['deploy-stack', 'update-stack', 'delete-stack'],
       description: 'CloudFormation Actions'
     )    
@@ -28,7 +28,7 @@ pipeline {
   stages { 
         stage('deploy-stack') {
         when {
-            expression { params.ACTION == 'deploy-stack' }
+            expression { params.VPC == 'deploy-stack' }
         }
         steps {
         sh "aws cloudformation create-stack --stack-name ${STACK_NAME} --template-body file://${TEMPLATE_NAME} --region ${REGION} --parameters ParameterKey=MyCIDR,ParameterValue=${CIDR} ParameterKey=publicsubnetcidr,ParameterValue=${PUBLIC_SUBNET} ParameterKey=privatesubnetcidr,ParameterValue=${PRIVATE_SUBNET}"
@@ -37,7 +37,7 @@ pipeline {
 
         stage('update-stack') {
         when {
-            expression { params.ACTION == 'update-stack' }
+            expression { params.VPC == 'update-stack' }
         }
         steps {
         sh "aws cloudformation update-stack --stack-name ${STACK_NAME} --template-body file://${TEMPLATE_NAME} --region ${REGION} --parameters ParameterKey=MyCIDR,ParameterValue=${CIDR} ParameterKey=publicsubnetcidr,ParameterValue=${PUBLIC_SUBNET} ParameterKey=privatesubnetcidr,ParameterValue=${PRIVATE_SUBNET}"    
@@ -46,7 +46,7 @@ pipeline {
 
         stage('delete-stack') {
         when {
-            expression { params.ACTION == 'delete-stack' }
+            expression { params.VPC == 'delete-stack' }
         }
         steps {
         sh "aws cloudformation delete-stack --stack-name ${STACK_NAME} --region ${REGION}"    
