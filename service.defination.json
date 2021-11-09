@@ -1,7 +1,7 @@
 {
     "cluster": "",
     "serviceName": "",
-    "desiredCount": "",
+    "desiredCount": 0,
     "role": "",
     "deploymentConfiguration": {
         "maximumPercent": 0,
@@ -9,7 +9,7 @@
     },
     "placementConstraints": [
         {
-            "type": "",
+            "type": "distinctInstance",
             "expression": ""
         }
     ],
@@ -19,6 +19,7 @@
             "field": ""
         }
     ],
+    "healthCheckGracePeriodSeconds": 0,
     "schedulingStrategy": "REPLICA",
     "deploymentController": {
         "type": "EXTERNAL"
