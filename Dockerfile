@@ -1,14 +1,8 @@
-
-FROM ubuntu:latest
-
-
-LABEL version="0.0.1"
-
-RUN  apt-get update && apt-get upgrade -y
-
-RUN apt-get install nginx -y
-
+FROM ubuntu
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get install apache2 -y
+RUN apt-get install apache2-utils -y
+RUN apt-get clean
 EXPOSE 80
-
-
-CMD [ "nginx", "-g", "daemon off;"]
+CMD ["apache2ctl","-D","FOREGROUND"]
