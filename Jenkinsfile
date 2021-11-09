@@ -89,12 +89,23 @@ pipeline {
     // //     sh "aws ecs create-task-set --cluster mycluster --service MyService --task-definition sample-fargate:11 --network-configuration awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4],securityGroups=[sg-0541867ccac96203a],assignPublicIp=ENABLED} --cli-input-json file://TaskSet.template.json --region us-east-1"    
     // //     }
     // // }
-    //     stage('task-set') {
+        stage('task-set') {
 
-    //     steps {
-    //     sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --network-configuration awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4],securityGroups=[sg-0541867ccac96203a]} --region us-east-1"    
-    //     }
-    // }
+        steps {
+        sh " aws ecs create-service --cluster default --service-name flask-signup-service --task-definition flask-signup --load-balancers loadBalancerName=elb-flask-signup-1985465812,containerName=flask-signup,containerPort=5000 --role ecs-service-role --desired-count 0
+            {
+                "service": {
+                    "status": "ACTIVE",
+                    "taskDefinition": "arn:aws:ecs:us-east-1:123456789012:task-definition/flask-signup:1",
+                    "desiredCount": 0,
+                    "serviceName": "flask-signup-service",
+                    "clusterArn": "arn:aws:ecs:us-east-1:123456789012:cluster/default",
+                    "serviceArn": "arn:aws:ecs:us-east-1:123456789012:service/flask-signup-service",
+                    "runningCount": 0
+                }
+            }"    
+        }
+    }
   
   }
 }
