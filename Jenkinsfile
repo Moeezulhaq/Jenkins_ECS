@@ -65,22 +65,22 @@ pipeline {
         }
     }    
     
-    //     stage('delete-cluster') {
-    //     when {
-    //         expression { params.ACTION == 'delete-cluster' }
-    //     }
-    //     steps {
-    //     sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
-    //     }
-    // }
+        stage('delete-cluster') {
+        when {
+            expression { params.ACTION == 'delete-cluster' }
+        }
+        steps {
+        sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
+        }
+    }
 
 
-    //     stage('run-task') {
+        stage('run-task') {
 
-    //     steps {
-    //     sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4]} --region us-east-1"    
-    //     }
-    // }
+        steps {
+        sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4]} --region us-east-1"    
+        }
+    }
 
     //     stage('Create-task-set') {
 
