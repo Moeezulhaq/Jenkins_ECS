@@ -85,7 +85,7 @@ pipeline {
         stage('Create-task-set') {
 
         steps {
-        sh "aws ecs create-task-set --cluster mycluster - --region us-east-1"    
+        sh "aws ecs create-task-set --cluster mycluster --service MyService --task-definition sample-fargate --region us-east-1"    
         }
     }
 
