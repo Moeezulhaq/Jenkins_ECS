@@ -19,7 +19,6 @@
             "field": ""
         }
     ],
-    "healthCheckGracePeriodSeconds": 0,
     "schedulingStrategy": "REPLICA",
     "deploymentController": {
         "type": "EXTERNAL"
