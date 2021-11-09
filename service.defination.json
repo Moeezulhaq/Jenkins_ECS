@@ -9,7 +9,7 @@
     },
     "placementConstraints": [
         {
-            "type": "distinctInstance",
+            "type": "",
             "expression": ""
         }
     ],
