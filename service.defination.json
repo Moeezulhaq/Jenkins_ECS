@@ -4,8 +4,8 @@
     "desiredCount": "",
     "role": "",
     "deploymentConfiguration": {
-        "maximumPercent": "",
-        "minimumHealthyPercent": ""
+        "maximumPercent": 0,
+        "minimumHealthyPercent": 0
     },
     "placementConstraints": [
         {
@@ -19,7 +19,7 @@
             "field": ""
         }
     ],
-    "healthCheckGracePeriodSeconds": "",
+    "healthCheckGracePeriodSeconds": 0,
     "schedulingStrategy": "REPLICA",
     "deploymentController": {
         "type": "EXTERNAL"
