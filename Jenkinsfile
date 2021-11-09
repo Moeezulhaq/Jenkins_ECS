@@ -8,7 +8,7 @@ pipeline {
     )
     choice(
       name: 'VPC',
-      choices: ['deploy-stack', 'null' , 'update-stack', 'delete-stack'],
+      choices: ['deploy-stack', 'update-stack', 'delete-stack'],
       description: 'CloudFormation Actions'
     )    
     string(name: 'STACK_NAME', defaultValue: 'example-stack', description: 'Enter the CloudFormation Stack Name.')
