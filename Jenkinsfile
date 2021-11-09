@@ -92,7 +92,7 @@ pipeline {
         stage('task-set') {
 
         steps {
-        sh " aws ecs create-service --cluster mycluster --service-name myservice --task-definition flask-signup --load-balancers loadBalancerName=ecs-alb,containerName=app,containerPort=80 --role ecsTaskExecutionRole --desired-count 0"    
+        sh " aws ecs create-service --cluster mycluster --service-name myservice --task-definition flask-signup --load-balancers loadBalancerName=ecs-alb,containerName=app,containerPort=80 --role ecsTaskExecRoleFG --desired-count 0"    
         }
     }
   
