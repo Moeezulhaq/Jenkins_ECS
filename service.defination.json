@@ -4,7 +4,7 @@
     "desiredCount": 0,
     "role": "",
     "deploymentConfiguration": {
-        "maximumPercent": 0,
+        "maximumPercent": 100,
         "minimumHealthyPercent": 0
     },
 
