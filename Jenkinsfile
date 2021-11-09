@@ -75,17 +75,17 @@ pipeline {
     }
 
 
-    //     stage('run-task') {
+        stage('create-service') {
 
-    //     steps {
-    //     sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --count 1 --region us-east-1"    
-    //     }
-    // }
+        steps {
+        sh "aws ecs create-service --cluster mycluster --service-name MyService --desired-count 2 --launch-type FARGATE --task-definition sample-fargate:11 --network-configuration "awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4],securityGroups=[Dogma--3384],assignPublicIp=ENABLED}"  --region us-east-1"    
+        }
+    }
 
         stage('Create-task-set') {
 
         steps {
-        sh "aws ecs create-task-set --cluster mycluster --cli-input-json file://create-service.json --region us-east-1"    
+        sh "aws ecs create-task-set --cluster mycluster - --region us-east-1"    
         }
     }
 
