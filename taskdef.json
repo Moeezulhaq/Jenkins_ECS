@@ -31,10 +31,8 @@
     "memory": "1024",
     "taskRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecRoleFG",
     "compatibilities": [
-      "EC2",
       "FARGATE"
     ],
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:489994096722:task-definition/sample-app:63",
     "family": "sample-app",
     "requiresAttributes": [
       {
@@ -70,7 +68,5 @@
       "operatingSystemFamily": "LINUX"
     },
     "cpu": "512",
-    "revision": 63,
-    "status": "ACTIVE",
     "volumes": []
   }
