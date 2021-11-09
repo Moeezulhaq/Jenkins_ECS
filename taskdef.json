@@ -1,45 +1,18 @@
 {
-    "executionRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecutionRole",
+    "family": "flask-signup",
     "containerDefinitions": [
-      {
-
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "options": {
-            "awslogs-group": "/ecs/sample-app",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "ecs"
-          }
-        },
-        "portMappings": [
-          {
-            "hostPort": 80,
-            "protocol": "tcp",
-            "containerPort": 80
-          }
-        ],
-
-        "cpu": 0,
-        "environment": [],
-        "mountPoints": [],
-        "volumesFrom": [],
-        "image": "public.ecr.aws/y2a9o9h4/jenkins-ecs:latest",
-        "name": "webserver"
-      }
-    ],
-    "placementConstraints": [],
-    "memory": "1024",
-    "taskRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecRoleFG",
-
-    "family": "sample-app",
-
-    "requiresCompatibilities": [
-      "FARGATE"
-    ],
-    "networkMode": "awsvpc",
-    "runtimePlatform": {
-      "operatingSystemFamily": "LINUX"
-    },
-    "cpu": "512",
-    "volumes": []
-  }
+        {
+            "image": "public.ecr.aws/y2a9o9h4/jenkins-ecs:latest",
+            "name": "sample-app",
+            "cpu": 10,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 5000,
+                    "hostPort": 80
+                }
+            ]
+        }
+    ]
+}
