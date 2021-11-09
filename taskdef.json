@@ -1,29 +1,122 @@
 {
-    "family": "sample-fargate", 
-    "networkMode": "awsvpc", 
-    "taskRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecutionRole",
-    "executionRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecutionRole" ,
+    "ipcMode": null,
+    "executionRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecutionRole",
     "containerDefinitions": [
-        {
-            "name": "fargate-app", 
-            "image": "public.ecr.aws/y2a9o9h4/jenkins-ecs:latest", 
-            "portMappings": [
-                {
-                    "containerPort": 80, 
-                    "hostPort": 80, 
-                    "protocol": "tcp"
-                }
-            ], 
-            "essential": true, 
-            "entryPoint": [
-            ], 
-            "command": [
-            ]
-        }
-    ], 
+      {
+        "dnsSearchDomains": null,
+        "environmentFiles": null,
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "secretOptions": null,
+          "options": {
+            "awslogs-group": "/ecs/sample-app",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        },
+        "entryPoint": null,
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "protocol": "tcp",
+            "containerPort": 80
+          }
+        ],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 0,
+        "environment": [],
+        "resourceRequirements": null,
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [],
+        "workingDirectory": null,
+        "secrets": null,
+        "dockerSecurityOptions": null,
+        "memory": null,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "stopTimeout": null,
+        "image": "public.ecr.aws/y2a9o9h4/jenkins-ecs:latest",
+        "startTimeout": null,
+        "firelensConfiguration": null,
+        "dependsOn": null,
+        "disableNetworking": null,
+        "interactive": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": null,
+        "hostname": null,
+        "extraHosts": null,
+        "pseudoTerminal": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "systemControls": null,
+        "privileged": null,
+        "name": "webserver"
+      }
+    ],
+    "placementConstraints": [],
+    "memory": "1024",
+    "taskRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecRoleFG",
+    "compatibilities": [
+      "EC2",
+      "FARGATE"
+    ],
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:489994096722:task-definition/sample-app:63",
+    "family": "sample-app",
+    "requiresAttributes": [
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "ecs.capability.execution-role-awslogs"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.task-iam-role"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "ecs.capability.task-eni"
+      }
+    ],
+    "pidMode": null,
     "requiresCompatibilities": [
-        "FARGATE"
-    ], 
-    "cpu": "256", 
-    "memory": "512"
-}
+      "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "runtimePlatform": {
+      "operatingSystemFamily": "LINUX",
+      "cpuArchitecture": null
+    },
+    "cpu": "512",
+    "revision": 63,
+    "status": "ACTIVE",
+    "inferenceAccelerators": null,
+    "proxyConfiguration": null,
+    "volumes": []
+  }

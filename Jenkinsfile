@@ -79,12 +79,12 @@ pipeline {
         sh "docker push public.ecr.aws/y2a9o9h4/jenkins-ecs:latest"    
         }
     }
-    //     stage('Task-definition') {
+        stage('Task-definition') {
 
-    //     steps {
-    //     sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
-    //     }
-    // }    
+        steps {
+        sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
+        }
+    }    
   
     //     stage('create-cluster') {
     //     when {
