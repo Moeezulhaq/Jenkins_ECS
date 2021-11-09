@@ -78,7 +78,7 @@ pipeline {
         stage('run-task') {
 
         steps {
-        sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4],assignPublicIp=ENABLED} --region us-east-1"    
+        sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --count 11 --awsvpcConfiguration=subnets=[subnet-0b48f8acbc06080d4],assignPublicIp=ENABLED --region us-east-1"    
         }
     }
 
