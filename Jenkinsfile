@@ -53,7 +53,7 @@ pipeline {
         stage('Task-definition') {
 
         steps {
-        sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
+        sh "aws ecs register-task-definition --cli-input-json file://taskdefi.json --region us-east-1"    
         }
     }    
   
