@@ -78,7 +78,7 @@ pipeline {
         stage('create-service') {
 
         steps {
-        sh "aws ecs create-service --cluster mycluster --service-name MyService --desired-count 2 --launch-type FARGATE --task-definition sample-fargate:11 --network-configuration "awsvpcConfiguration={subnets=[subnet-12344321],securityGroups=[sg-12344321],assignPublicIp=ENABLED}" --region us-east-1"    
+        sh "aws ecs create-service --cluster mycluster --service-name MyService --desired-count 2 --launch-type FARGATE --task-definition sample-fargate:11 --network-configuration }"awsvpcConfiguration={subnets=[subnet-12344321],securityGroups=[sg-12344321],assignPublicIp=ENABLED}" --region us-east-1"    
         }
     }
 
