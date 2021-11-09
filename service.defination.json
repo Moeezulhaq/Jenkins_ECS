@@ -1,0 +1,35 @@
+{
+    "cluster": "",
+    "serviceName": "",
+    "desiredCount": "",
+    "role": "",
+    "deploymentConfiguration": {
+        "maximumPercent": "",
+        "minimumHealthyPercent": ""
+    },
+    "placementConstraints": [
+        {
+            "type": "distinctInstance",
+            "expression": ""
+        }
+    ],
+    "placementStrategy": [
+        {
+            "type": "binpack",
+            "field": ""
+        }
+    ],
+    "healthCheckGracePeriodSeconds": "",
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "EXTERNAL"
+    },
+    "tags": [
+        {
+            "key": "",
+            "value": ""
+        }
+    ],
+    "enableECSManagedTags": true,
+    "propagateTags": "TASK_DEFINITION"
+}
