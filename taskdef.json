@@ -6,7 +6,7 @@
     "containerDefinitions": [
         {
             "name": "fargate-app", 
-            "image": "489994096722.dkr.ecr.us-east-1.amazonaws.com/testingmoeez", 
+            "image": "public.ecr.aws/y2a9o9h4/jenkins-ecs:latest", 
             "portMappings": [
                 {
                     "containerPort": 80, 
