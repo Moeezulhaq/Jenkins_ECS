@@ -78,7 +78,7 @@ pipeline {
         stage('run-task') {
 
         steps {
-        sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --count 11 --region us-east-1"    
+        sh "aws ecs run-task --cluster mycluster --task-definition sample-fargate:11 --count 1 --region us-east-1"    
         }
     }
 
