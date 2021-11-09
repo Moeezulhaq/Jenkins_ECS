@@ -7,12 +7,7 @@
         "maximumPercent": 0,
         "minimumHealthyPercent": 0
     },
-    "placementConstraints": [
-        {
-            "type": "distinctInstance",
-            "expression": ""
-        }
-    ],
+
     "placementStrategy": [
         {
             "type": "binpack",
