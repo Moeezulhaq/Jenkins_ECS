@@ -1,173 +1,86 @@
 AWSTemplateFormatVersion: 2010-09-09
-
+Description: Creating ECS service
 Parameters:
-  MyKeyName:
-    Default: Moeez.Nv
-    Description: Select the key name from the list
-    Type: AWS::EC2::KeyPair::KeyName
-  MyAvailabilityZone:
-    Description: Select the AZ
-    Type: String
-    Default: "us-east-1a"
-    AllowedValues:
-      - us-east-2a
-      - us-east-2b    
-      - us-east-2c
-      - us-east-1a
-      - us-east-1b
-      - us-east-1c
-  MyInstanceType:
-    Description: select EC2 instance type from list.
-    Type: String
-    Default: "t2.micro"
-    AllowedValues:
-      - t2.micro
-      - t2.small
-      - t3.micro
-
-  MyCIDR:
-    Description: select CIDR for VPC.
-    Type: String
-    Default: "10.0.0.0/16"
-
-  publicsubnetcidr:
-    Description: select CIDR for VPC.
-    Type: String
-    Default: "10.0.1.0/24"
-
-  privatesubnetcidr:
-    Description: select CIDR for VPC.
-    Type: String
-    Default: "10.0.2.0/24"    
-
-
-
+  AppName:
+    Type: 'apache'
+    Description: Name of app requiring ELB exposure
+    Default: simple-app
+  AppContainerPort:
+    Type: '80'
+    Description: Container port of app requiring ELB exposure
+    Default: '80'
+  AppHostPort:
+    Type: '80'
+    Description: Host port of app requiring ELB exposure
+    Default: '80'
+  ServiceName:
+    Type: myservice
+  LoadBalancerName:
+    Type: ecs-alb
+  HealthCheckGracePeriodSeconds:
+    Type: 30
 Resources:
-  MyVPC:
-    Type: AWS::EC2::VPC
+  cluster:
+    Type: AWS::ECS::Cluster
+  taskdefinition:
+    Type: AWS::ECS::TaskDefinition
     Properties:
-      CidrBlock: !Ref MyCIDR
-      EnableDnsSupport: true
-      EnableDnsHostnames: true
-      Tags:
-       - Key: Name
-         Value: MyVPC
-  
-  MySecurityGroup:
-    Type: AWS::EC2::SecurityGroup
+      ContainerDefinitions:
+        - Name: !Ref AppName
+          MountPoints:
+            - SourceVolume: my-vol
+              ContainerPath: /var/www/my-vol
+          Image: amazon/amazon-ecs-sample
+          Cpu: '10'
+          PortMappings:
+            - ContainerPort: !Ref AppContainerPort
+              HostPort: !Ref AppHostPort
+          EntryPoint:
+            - /usr/sbin/apache2
+            - '-D'
+            - FOREGROUND
+          Memory: '500'
+          Essential: true
+        - Name: busybox
+          Image: busybox
+          Cpu: '10'
+          EntryPoint:
+            - sh
+            - '-c'
+          Memory: '500'
+          Command:
+            - >-
+              /bin/sh -c "while true; do /bin/date > /var/www/my-vol/date; sleep
+              1; done"
+          Essential: false
+          VolumesFrom:
+            - SourceContainer: !Ref AppName
+      Volumes:
+        - Host:
+            SourcePath: /var/lib/docker/vfs/dir/
+          Name: my-vol
+  service:
+    Type: AWS::ECS::Service
     Properties:
-      GroupDescription: My SG with Alltraffic
-      VpcId:
-        Ref: MyVPC
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '0'
-          ToPort: '65535'
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: udp
-          FromPort: '0'          
-          ToPort: '65535'
-          CidrIp: 0.0.0.0/0
-
-  MyInternetGateway:
-    Type: AWS::EC2::InternetGateway
-    Properties:
-      Tags:
-      - Key: Name
-        Value: MyInsternetGateway
-  AttachGateway:
-    Type: AWS::EC2::VPCGatewayAttachment
-    Properties:
-     VpcId:
-      Ref: MyVPC
-     InternetGatewayId: !Ref MyInternetGateway
-
-  MyPublicSubnet:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId:
-        Ref: MyVPC
-      CidrBlock: !Ref publicsubnetcidr
-      AvailabilityZone: !Ref MyAvailabilityZone
-      Tags:
-      - Key: Name
-        Value:  MyPublicSubnet
-    
-  MyPrivateSubnet:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId:
-        Ref: MyVPC
-      CidrBlock: !Ref privatesubnetcidr
-      AvailabilityZone: !Ref MyAvailabilityZone
-      Tags:
-      - Key: Name
-        Value: MyPrivateSubnet
-
-  PublicRouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId:  
-        Ref: MyVPC
-      Tags:
-      - Key: Name
-        Value: PublicRouteTable
-
-  PublicRoute:
-    Type: AWS::EC2::Route
-    DependsOn: MyInternetGateway
-    Properties:
-       RouteTableId:
-         Ref: PublicRouteTable
-       DestinationCidrBlock: 0.0.0.0/0
-       GatewayId: !Ref MyInternetGateway
-
-  
-
-  PrivateRouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId:  
-        Ref: MyVPC
-      Tags:
-      - Key: Name
-        Value: PrivateRouteTable
-
-  PrivateRoute:
-    Type: AWS::EC2::Route
-    Properties:
-       RouteTableId:
-         Ref: PrivateRouteTable
-       DestinationCidrBlock: 0.0.0.0/0
-       NatGatewayId: !Ref MyNATGateway
-  
-  PublicSubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      SubnetId: !Ref MyPublicSubnet
-      RouteTableId: !Ref PublicRouteTable
-
-  PrivateSubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      SubnetId: !Ref MyPrivateSubnet
-      RouteTableId: !Ref PrivateRouteTable
-
-  MyNATGateway:
-     Type: AWS::EC2::NatGateway
-     Properties:
-        AllocationId:
-           Fn::GetAtt:
-           - EIP
-           - AllocationId
-        SubnetId: !Ref MyPublicSubnet
-        Tags:
-        - Key: Name
-          Value: MyNATGateway
-  EIP:
-     DependsOn: MyInternetGateway
-     Type: AWS::EC2::EIP
-     Properties:
-        Domain: MyVPC
-
-
+      Cluster: !Ref cluster
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      DesiredCount: 0
+      HealthCheckGracePeriodSeconds: !Ref HealthCheckGracePeriodSeconds
+      LoadBalancers:
+        - ContainerName: !Ref AppName
+          ContainerPort: !Ref AppContainerPort
+          LoadBalancerName: !Ref elb
+      PlacementStrategies:
+        - Type: binpack
+          Field: memory
+        - Type: spread
+          Field: host
+      PlacementConstraints:
+        - Type: memberOf
+          Expression: 'attribute:ecs.availability-zone != us-east-1d'
+        - Type: distinctInstance
+      TaskDefinition: !Ref taskdefinition
+      ServiceName: !Ref ServiceName
+      Role: !Ref Role
