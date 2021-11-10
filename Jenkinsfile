@@ -77,12 +77,12 @@ pipeline {
     }
 
 
-        stage('create-service') {
+    //     stage('create-service') {
 
-        steps {
-        sh "aws ecs create-service --cluster mycluster --service-name MyService --load-balancers loadBalancerName=ecs-alb --desired-count 2 --cli-input-json file://service.defination.json --region us-east-1"    
-        }
-    }
+    //     steps {
+    //     sh "aws ecs create-service --cluster mycluster --service-name MyService --load-balancers loadBalancerName=ecs-alb --desired-count 2 --cli-input-json file://service.defination.json --region us-east-1"    
+    //     }
+    // }
 
     //     stage('Create-task-set') {
 
