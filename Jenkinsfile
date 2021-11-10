@@ -23,10 +23,16 @@ pipeline {
 
   stages { 
    
+        stage('Create repository') {
+
+        steps {
+        sh "aws ecr create-repository --repository-name jenkins-ecs --image-scanning-configuration scanOnPush=true"
+        }
+    }
         stage('Login to ECR') {
 
         steps {
-        sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y2a9o9h4"
+        sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 489994096722.dkr.ecr.us-east-1.amazonaws.com"
         }
     }
 
@@ -40,20 +46,15 @@ pipeline {
         stage('Tag Image') {
 
         steps {
-        sh "docker tag jenkins-ecs:latest public.ecr.aws/y2a9o9h4/jenkins-ecs:latest"    
+        sh "docker tag jenkins-ecs:latest 489994096722.dkr.ecr.us-east-1.amazonaws.com/jenkins-ecs:latest"    
         }
     }
 
-        stage('Create repository') {
 
-        steps {
-        sh "aws ecr create-repository --repository-name jenkins-ecs --image-scanning-configuration scanOnPush=true"
-        }
-    }
         stage('Push Image') {
 
         steps {
-        sh "docker push public.ecr.aws/y2a9o9h4/jenkins-ecs:latest"    
+        sh "docker push 489994096722.dkr.ecr.us-east-1.amazonaws.com/jenkins-ecs:latest"    
         }
     }
         stage('Task-definition') {
