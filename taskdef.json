@@ -3,14 +3,6 @@
     "containerDefinitions": [
       {
 
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "options": {
-            "awslogs-group": "/ecs/sample-app",
-            "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "ecs"
-          }
-        },
         "portMappings": [
           {
             "hostPort": 80,
@@ -19,27 +11,46 @@
           }
         ],
 
-        "cpu": 0,
-        "environment": [],
-        "mountPoints": [],
+        "memory": 256,
+        "memoryReservation": 256,
         "volumesFrom": [],
-        "image": "public.ecr.aws/y2a9o9h4/jenkins-ecs:latest",
-        "name": "webserver"
+        "image": "489994096722.dkr.ecr.us-east-1.amazonaws.com/jenkins-ecs:latest",
+
+        "name": "app"
       }
     ],
     "placementConstraints": [],
     "memory": "1024",
-    "taskRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecRoleFG",
-
-    "family": "sample-app",
-
-    "requiresCompatibilities": [
-      "FARGATE"
+    "taskRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecutionRole",
+    "compatibilities": [
+      "EXTERNAL",
+      "EC2"
     ],
-    "networkMode": "awsvpc",
-    "runtimePlatform": {
-      "operatingSystemFamily": "LINUX"
-    },
-    "cpu": "512",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:489994096722:task-definition/sample-app:30",
+    "family": "sample-app",
+    "requiresAttributes": [
+      {
+
+        "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+      },
+      {
+
+        "name": "com.amazonaws.ecs.capability.task-iam-role"
+      },
+      {
+
+        "name": "ecs.capability.execution-role-ecr-pull"
+      }
+    ],
+    "requiresCompatibilities": [
+      "EC2"
+    ],
+    "cpu": "1024",
+    "revision": 30,
+    "status": "ACTIVE",
     "volumes": []
   }

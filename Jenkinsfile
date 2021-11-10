@@ -93,7 +93,7 @@ pipeline {
         stage('task-set') {
 
         steps {
-        sh "aws ecs create-service --cluster mycluster --service-name checking --task-definition sample-app --load-balancers loadBalancerName=ecs-alb-1890033726,containerName=app,containerPort=80 --role ecsTaskExecRoleFG --desired-count 0"    
+        sh "aws ecs create-service --cluster mycluster --service-name myservice --task-definition sample-app --load-balancers loadBalancerName=ecs-alb-1890033726,containerName=app,containerPort=80 --role ecsTaskExecutionRole --desired-count 0"    
         }
     }
   
