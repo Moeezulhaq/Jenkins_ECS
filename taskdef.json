@@ -22,9 +22,7 @@
     "placementConstraints": [],
     "memory": "1024",
     "taskRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecutionRole",
-    "compatibilities": [
-      "EC2"
-    ],
+
     "family": "sample-app",
     "requiresCompatibilities": [
       "EC2"
