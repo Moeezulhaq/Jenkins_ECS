@@ -44,6 +44,12 @@ pipeline {
         }
     }
 
+        stage('Create repository') {
+
+        steps {
+        sh "aws ecr create-repository --repository-name jenkins-ecs --image-scanning-configuration scanOnPush=true"
+        }
+    }
         stage('Push Image') {
 
         steps {
