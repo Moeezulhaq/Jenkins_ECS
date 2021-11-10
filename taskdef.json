@@ -23,34 +23,12 @@
     "memory": "1024",
     "taskRoleArn": "arn:aws:iam::489994096722:role/ecsTaskExecutionRole",
     "compatibilities": [
-      "EXTERNAL",
       "EC2"
     ],
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:489994096722:task-definition/sample-app:30",
     "family": "sample-app",
-    "requiresAttributes": [
-      {
-
-        "name": "com.amazonaws.ecs.capability.ecr-auth"
-      },
-      {
-
-        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-      },
-      {
-
-        "name": "com.amazonaws.ecs.capability.task-iam-role"
-      },
-      {
-
-        "name": "ecs.capability.execution-role-ecr-pull"
-      }
-    ],
     "requiresCompatibilities": [
       "EC2"
     ],
     "cpu": "1024",
-    "revision": 30,
-    "status": "ACTIVE",
     "volumes": []
   }
