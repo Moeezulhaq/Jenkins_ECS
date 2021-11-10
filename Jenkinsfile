@@ -90,12 +90,12 @@ pipeline {
     //     sh "aws ecs create-task-set --cluster mycluster --service MyService --task-definition sample-app --network-configuration awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4],securityGroups=[sg-0541867ccac96203a],assignPublicIp=ENABLED} --cli-input-json file://TaskSet.template.json --region us-east-1"    
     //     }
     // }
-    //     stage('task-set') {
+        stage('task-set') {
 
-    //     steps {
-    //     sh " aws ecs create-service --cluster mycluster --service-name myservice --task-definition sample-app --load-balancers loadBalancerName=ecs-alb,containerName=app,containerPort=80 --role ecsServiceRole --desired-count 0"    
-    //     }
-    // }
+        steps {
+        sh "aws ecs create-service --cluster testing --service-name checking --task-definition sample-app --load-balancers loadBalancerName=ecs-alb-1890033726,containerName=app,containerPort=80 --role ecsTaskExecRoleFG --desired-count 0"    
+        }
+    }
   
   }
 }
