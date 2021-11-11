@@ -58,23 +58,23 @@ pipeline {
         }
     }    
   
-        stage('create-cluster') {
-        when {
-            expression { params.ACTION == 'create-cluster' }
-        }
-        steps {
-        sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
-        }
-    }    
+    //     stage('create-cluster') {
+    //     when {
+    //         expression { params.ACTION == 'create-cluster' }
+    //     }
+    //     steps {
+    //     sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
+    //     }
+    // }    
     
-        stage('delete-cluster') {
-        when {
-            expression { params.ACTION == 'delete-cluster' }
-        }
-        steps {
-        sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
-        }
-    }
+    //     stage('delete-cluster') {
+    //     when {
+    //         expression { params.ACTION == 'delete-cluster' }
+    //     }
+    //     steps {
+    //     sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
+    //     }
+    // }
 
     //     stage('Create-task-set') {
 
