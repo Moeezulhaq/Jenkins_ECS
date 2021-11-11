@@ -7,7 +7,7 @@ pipeline {
       description: 'CloudFormation Actions'
     )
     
-    
+
     // string(name: 'STACK_NAME', defaultValue: 'example-stack', description: 'Enter the CloudFormation Stack Name.')
     // string(name: 'PARAMETERS_FILE_NAME', defaultValue: 'parameters/example-stack-parameters.properties', description: 'Enter the Parameters File Name (Must contain file extension type *.properties)')
     // string(name: 'TEMPLATE_NAME', defaultValue: 'Word.yml', description: 'Enter the CloudFormation Template Name (Must contain file extension type *.yaml)')
@@ -27,21 +27,21 @@ pipeline {
         stage('Login to ECR') {
 
         steps {
-        sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 489994096722.dkr.ecr.us-east-1.amazonaws.com"
+        sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y2a9o9h4"
         }
     }
 
         stage('Build Image') {
 
         steps {
-        sh "docker build -t jenkins-ecs ."    
+        sh "docker build -t jenkins ."    
         }
     }
 
         stage('Tag Image') {
 
         steps {
-        sh "docker tag jenkins-ecs:latest 489994096722.dkr.ecr.us-east-1.amazonaws.com/jenkins-ecs:latest"    
+        sh "docker tag jenkins:latest public.ecr.aws/y2a9o9h4/jenkins:latest"    
         }
     }
 
@@ -49,7 +49,7 @@ pipeline {
         stage('Push Image') {
 
         steps {
-        sh "docker push 489994096722.dkr.ecr.us-east-1.amazonaws.com/jenkins-ecs:latest"    
+        sh "docker push public.ecr.aws/y2a9o9h4/jenkins:latest"    
         }
     }
         stage('Task-definition') {
