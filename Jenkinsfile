@@ -17,6 +17,7 @@ pipeline {
     // choice(
     //   name: 'REGION',
     //   choices: ['us-east-1','us-east-2'],
+    //   description: 'AWS Account Region'
     // )
   }
 
