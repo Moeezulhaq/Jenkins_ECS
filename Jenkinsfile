@@ -6,7 +6,6 @@ pipeline {
       choices: ['create-cluster', 'update-cluster', 'delete-cluster'],
       description: 'CloudFormation Actions'
     )
-    
 
     // string(name: 'STACK_NAME', defaultValue: 'example-stack', description: 'Enter the CloudFormation Stack Name.')
     // string(name: 'PARAMETERS_FILE_NAME', defaultValue: 'parameters/example-stack-parameters.properties', description: 'Enter the Parameters File Name (Must contain file extension type *.properties)')
