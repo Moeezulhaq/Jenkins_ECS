@@ -30,12 +30,12 @@ pipeline {
         }
     }
 
-        stage('Tag Image') {
+    //     stage('Tag Image') {
 
-        steps {
-        sh"./Tag.sh"  
-        }
-    }
+    //     steps {
+    //     sh"./Tag.sh"  
+    //     }
+    // }
        
         stage('Deploying on ecs') {
         when {
