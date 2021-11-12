@@ -1,24 +1,24 @@
 pipeline {
   agent any
-//   parameters {
-    // choice(
-    //   name: 'ACTION',
-    //   choices: ['create-cluster', 'update-cluster', 'delete-cluster'],
-    //   description: 'CloudFormation Actions'
-    // )
+  parameters {
+//     choice(
+//       name: 'ACTION',
+//       choices: ['create-cluster', 'update-cluster', 'delete-cluster'],
+//       description: 'CloudFormation Actions'
+//     )
 
-    // string(name: 'STACK_NAME', defaultValue: 'example-stack', description: 'Enter the CloudFormation Stack Name.')
-    // string(name: 'PARAMETERS_FILE_NAME', defaultValue: 'parameters/example-stack-parameters.properties', description: 'Enter the Parameters File Name (Must contain file extension type *.properties)')
-    // string(name: 'TEMPLATE_NAME', defaultValue: 'Word.yml', description: 'Enter the CloudFormation Template Name (Must contain file extension type *.yaml)')
-    // string(name: 'CIDR', defaultValue: '10.0.0.0/16', description: 'Enter the CIDR for CloudFormation Template ')
-    // string(name: 'PUBLIC_SUBNET', defaultValue: '10.0.1.0/24', description: 'Enter the CIDR for CloudFormation Template public subnet')
-    // string(name: 'PRIVATE_SUBNET', defaultValue: '10.0.2.0/24', description: 'Enter the CIDR for CloudFormation Template private subnet')
-    // credentials(name: 'CFN_CREDENTIALS_ID', defaultValue: '', description: 'AWS Account Role.', required: true)
-    // choice(
-    //   name: 'REGION',
-    //   choices: ['us-east-1','us-east-2'],
-    //   description: 'AWS Account Region'
-    // )
+//     // string(name: 'STACK_NAME', defaultValue: 'example-stack', description: 'Enter the CloudFormation Stack Name.')
+//     // string(name: 'PARAMETERS_FILE_NAME', defaultValue: 'parameters/example-stack-parameters.properties', description: 'Enter the Parameters File Name (Must contain file extension type *.properties)')
+//     // string(name: 'TEMPLATE_NAME', defaultValue: 'Word.yml', description: 'Enter the CloudFormation Template Name (Must contain file extension type *.yaml)')
+//     // string(name: 'CIDR', defaultValue: '10.0.0.0/16', description: 'Enter the CIDR for CloudFormation Template ')
+//     // string(name: 'PUBLIC_SUBNET', defaultValue: '10.0.1.0/24', description: 'Enter the CIDR for CloudFormation Template public subnet')
+//     // string(name: 'PRIVATE_SUBNET', defaultValue: '10.0.2.0/24', description: 'Enter the CIDR for CloudFormation Template private subnet')
+//     // credentials(name: 'CFN_CREDENTIALS_ID', defaultValue: '', description: 'AWS Account Role.', required: true)
+//     // choice(
+//     //   name: 'REGION',
+//     //   choices: ['us-east-1','us-east-2'],
+//     //   description: 'AWS Account Region'
+//     // )
 //   }
 
   stages { 
@@ -57,31 +57,8 @@ pipeline {
         sh "aws ecs register-task-definition --cli-input-json file://taskdef.json --region us-east-1"    
         }
     }    
-  
-    //     stage('create-cluster') {
-    //     when {
-    //         expression { params.ACTION == 'create-cluster' }
-    //     }
-    //     steps {
-    //     sh "aws ecs create-cluster --cluster-name mycluster --region us-east-1"    
-    //     }
-    // }    
     
-    //     stage('delete-cluster') {
-    //     when {
-    //         expression { params.ACTION == 'delete-cluster' }
-    //     }
-    //     steps {
-    //     sh "aws ecs delete-cluster --cluster mycluster --region us-east-1"    
-    //     }
-    // }
-
-    //     stage('Create-task-set') {
-
-    //     steps {
-    //     sh "aws ecs create-task-set --cluster mycluster --service MyService --task-definition sample-app --network-configuration awsvpcConfiguration={subnets=[subnet-0b48f8acbc06080d4],securityGroups=[sg-0541867ccac96203a],assignPublicIp=ENABLED} --cli-input-json file://TaskSet.template.json --region us-east-1"    
-    //     }
-    // }
+    
         stage('Deploying on ecs') {
 
         steps {
