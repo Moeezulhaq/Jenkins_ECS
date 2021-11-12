@@ -1,11 +1,11 @@
 pipeline {
   agent any
-//   parameters {
-//     choice(
-//       name: 'ACTION',
-//       choices: ['create-cluster', 'update-cluster', 'delete-cluster'],
-//       description: 'CloudFormation Actions'
-//     )
+  parameters {
+    choice(
+      name: 'ACTION',
+      choices: ['create-cluster', 'update-cluster', 'delete-cluster'],
+      description: 'CloudFormation Actions'
+    )
 
 //     // string(name: 'STACK_NAME', defaultValue: 'example-stack', description: 'Enter the CloudFormation Stack Name.')
 //     // string(name: 'PARAMETERS_FILE_NAME', defaultValue: 'parameters/example-stack-parameters.properties', description: 'Enter the Parameters File Name (Must contain file extension type *.properties)')
@@ -19,7 +19,7 @@ pipeline {
 //     //   choices: ['us-east-1','us-east-2'],
 //     //   description: 'AWS Account Region'
 //     // )
-//   }
+  }
 
   stages { 
    
@@ -60,12 +60,12 @@ pipeline {
     }
   
   }
+
+  post
+  {
+      always
+      {
+        slackSend channel: 'moeez_testing', message: "Please Find status of Job status- ${currentBuild.currentResult} Build Name-${env.JOB_NAME} Build Number-${env.BUILD_NUMBER} Build URL-${env.BUILD_URL}"
+      }
+  }
 }
-//   post
-//   {
-//       always
-//       {
-//         slackSend channel: 'moeez_testing', message: "Please Find status of Job status- ${currentBuild.currentResult} Build Name-${env.JOB_NAME} Build Number-${env.BUILD_NUMBER} Build URL-${env.BUILD_URL}"
-//       }
-//   }
-// }
