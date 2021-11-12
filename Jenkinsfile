@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  parameters {
+//   parameters {
     // choice(
     //   name: 'ACTION',
     //   choices: ['create-cluster', 'update-cluster', 'delete-cluster'],
@@ -19,7 +19,7 @@ pipeline {
     //   choices: ['us-east-1','us-east-2'],
     //   description: 'AWS Account Region'
     // )
-  }
+//   }
 
   stages { 
    
