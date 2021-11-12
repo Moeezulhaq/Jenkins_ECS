@@ -3,7 +3,7 @@ pipeline {
   parameters {
     choice(
       name: 'ACTION',
-      choices: ['deploy-cluster', 'update-service', 'delete-cluster'],
+      choices: ['deploy-cluster', 'delete-cluster'],
       description: 'CloudFormation Actions'
     )
 
@@ -62,7 +62,7 @@ pipeline {
     }
 
 
-        stage('Delete Stack') {
+        stage('Delete cluster') {
         when {
             expression { params.ACTION == 'delete-cluster' }
         }
