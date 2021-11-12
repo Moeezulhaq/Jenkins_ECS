@@ -69,7 +69,7 @@ pipeline {
             expression { params.ACTION == 'delete-cluster' }
         }
         steps {
-        sh "aws ecs update-service --service myservice --task-definition myservice-task"    
+        sh "aws cloudformation delete-stack --stack-name ecs"    
         }
     }
   }
