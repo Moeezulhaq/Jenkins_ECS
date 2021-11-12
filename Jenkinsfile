@@ -34,9 +34,7 @@ pipeline {
         stage('Tag Image') {
 
         steps {
-        sh"gittag=$(git log -1 --pretty=%h)"
-        sh "docker tag jenkins:$gittag public.ecr.aws/y2a9o9h4/jenkins:$gittag"    
-        sh "docker push public.ecr.aws/y2a9o9h4/jenkins:$gittag"  
+        sh"./Tag.sh"  
         }
     }
        
