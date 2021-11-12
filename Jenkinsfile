@@ -61,14 +61,6 @@ pipeline {
         }
     }
 
-        stage('Update service') {
-        when {
-            expression { params.ACTION == 'update-service' }
-        }
-        steps {
-        sh "aws ecs update-service --service myservice --task-definition myservice-task"    
-        }
-    }
 
         stage('Delete Stack') {
         when {
