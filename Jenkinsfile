@@ -23,17 +23,18 @@ pipeline {
 
   stages { 
    
-        stage('Login to ECR') {
+    //     stage('Login to ECR') {
 
-        steps {
-        sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y2a9o9h4"
-        }
-    }
+    //     steps {
+    //     sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y2a9o9h4"
+    //     }
+    // }
 
         stage('Build Image') {
 
         steps {
         sh "docker build -t jenkins ."    
+        sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y2a9o9h4"
         }
     }
 
