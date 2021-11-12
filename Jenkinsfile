@@ -29,13 +29,6 @@ pipeline {
         sh "./Tag.sh"  
         }
     }
-
-    //     stage('Tag Image') {
-
-    //     steps {
-    //     sh"./Tag.sh"  
-    //     }
-    // }
        
         stage('Deploying on ecs') {
         when {
