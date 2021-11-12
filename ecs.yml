@@ -1,4 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  Imagetag:
+    Description: Imagetag.
+    Type: String
+    Default: ""
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster
@@ -23,7 +28,7 @@ Resources:
       NetworkMode: awsvpc
       ContainerDefinitions:
         - Name: myservice-container
-          Image: public.ecr.aws/y2a9o9h4/jenkins:latest
+          Image: public.ecr.aws/y2a9o9h4/jenkins:ab11e80
           PortMappings:
             - ContainerPort: 80
       RequiresCompatibilities:
