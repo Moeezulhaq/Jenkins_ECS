@@ -50,7 +50,8 @@ pipeline {
         steps {
         sh "docker push public.ecr.aws/y2a9o9h4/jenkins:latest"    
         }
-    }    
+    }
+       
         stage('Deploying on ecs') {
 
         steps {
