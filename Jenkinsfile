@@ -42,16 +42,17 @@ pipeline {
 
         steps {
         sh "docker tag jenkins:latest public.ecr.aws/y2a9o9h4/jenkins:latest"    
+        sh "docker push public.ecr.aws/y2a9o9h4/jenkins:latest"  
         }
     }
 
 
-        stage('Push Image') {
+    //     stage('Push Image') {
 
-        steps {
-        sh "docker push public.ecr.aws/y2a9o9h4/jenkins:latest"    
-        }
-    }
+    //     steps {
+    //     sh "docker push public.ecr.aws/y2a9o9h4/jenkins:latest"    
+    //     }
+    // }
        
         stage('Deploying on ecs') {
         when {
