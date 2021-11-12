@@ -3,7 +3,7 @@ pipeline {
   parameters {
     choice(
       name: 'ACTION',
-      choices: ['deploy-stack', 'update-cluster', 'delete-cluster'],
+      choices: ['deploy-cluster', 'update-service', 'delete-cluster'],
       description: 'CloudFormation Actions'
     )
 
@@ -54,22 +54,30 @@ pipeline {
        
         stage('Deploying on ecs') {
         when {
-            expression { params.ACTION == 'eploy-stack' }
+            expression { params.ACTION == 'deploy-cluster' }
         }
         steps {
         sh "aws cloudformation deploy --template-file ecs.yml --stack-name ecs"    
         }
     }
 
-        stage('Deploying on ecs') {
+        stage('Update service') {
         when {
-            expression { params.ACTION == 'eploy-stack' }
+            expression { params.ACTION == 'update-service' }
         }
         steps {
         sh "aws ecs update-service --service myservice --task-definition myservice-task"    
         }
     }
 
+        stage('Delete Stack') {
+        when {
+            expression { params.ACTION == 'deploy-cluster' }
+        }
+        steps {
+        sh "aws ecs update-service --service myservice --task-definition myservice-task"    
+        }
+    }
   }
 
   post
