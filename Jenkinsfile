@@ -22,37 +22,23 @@ pipeline {
   }
 
   stages { 
-   
-    //     stage('Login to ECR') {
-
-    //     steps {
-    //     sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y2a9o9h4"
-    //     }
-    // }
 
         stage('Build Image') {
 
         steps {
         sh "docker build -t jenkins ."    
         sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y2a9o9h4"
+        sh"git log -1 --pretty=%h=gitcommit"  
         }
     }
 
         stage('Tag Image') {
 
         steps {
-        sh "docker tag jenkins:latest public.ecr.aws/y2a9o9h4/jenkins:latest"    
+        sh "docker tag jenkins:latest public.ecr.aws/y2a9o9h4/jenkins:$gitcommit"    
         sh "docker push public.ecr.aws/y2a9o9h4/jenkins:latest"  
         }
     }
-
-
-    //     stage('Push Image') {
-
-    //     steps {
-    //     sh "docker push public.ecr.aws/y2a9o9h4/jenkins:latest"    
-    //     }
-    // }
        
         stage('Deploying on ecs') {
         when {
@@ -62,7 +48,6 @@ pipeline {
         sh "aws cloudformation deploy --template-file ecs.yml --stack-name ecs"    
         }
     }
-
 
         stage('Delete cluster') {
         when {
