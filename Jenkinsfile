@@ -85,7 +85,7 @@ pipeline {
         stage('Deploying on ecs') {
 
         steps {
-        sh "aws cloudformation deploy --template-file ecs.yml"    
+        sh "aws cloudformation deploy --template-file ecs.yml --stack-name ecs"    
         }
     }
   
