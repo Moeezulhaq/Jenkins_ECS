@@ -1,4 +1,4 @@
-@Library ("shared-library") _
+@Library ("Shared-library") _
 pipeline {
   agent any
   parameters {
@@ -36,7 +36,12 @@ pipeline {
         sh "aws cloudformation delete-stack --stack-name ${STACK_NAME}"    
         }
     }
+  
+        stage('Slack notification') {
+
+        steps {
+            SlackNotification()
+        }
+    }
+  
   }
-
-
-}
