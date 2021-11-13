@@ -41,4 +41,5 @@ pipeline {
   post
   {
       SlackNotification()
+  }
 }
