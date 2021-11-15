@@ -43,7 +43,7 @@ Parameters:
 
 
 Resources:
-  MyVPC:
+  VPC:
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: !Ref MyCIDR
@@ -51,14 +51,14 @@ Resources:
       EnableDnsHostnames: true
       Tags:
        - Key: Name
-         Value: MyVPC
+         Value: VPC
   
-  MySecurityGroup:
+  SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: My SG with Alltraffic
       VpcId:
-        Ref: MyVPC
+        Ref: VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '0'
@@ -69,20 +69,20 @@ Resources:
           ToPort: '65535'
           CidrIp: 0.0.0.0/0
 
-  MyInternetGateway:
+  InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
       - Key: Name
-        Value: MyInsternetGateway
+        Value: InsternetGateway
   AttachGateway:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
      VpcId:
-      Ref: MyVPC
-     InternetGatewayId: !Ref MyInternetGateway
+      Ref: VPC
+     InternetGatewayId: !Ref InternetGateway
 
-  MyPublicSubnet:
+  PublicSubnet:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId:
@@ -91,9 +91,9 @@ Resources:
       AvailabilityZone: !Ref MyAvailabilityZone
       Tags:
       - Key: Name
-        Value:  MyPublicSubnet
+        Value:  PublicSubnet
     
-  MyPrivateSubnet:
+  PrivateSubnet:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId:
@@ -102,7 +102,7 @@ Resources:
       AvailabilityZone: !Ref MyAvailabilityZone
       Tags:
       - Key: Name
-        Value: MyPrivateSubnet
+        Value: PrivateSubnet
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
@@ -115,12 +115,12 @@ Resources:
 
   PublicRoute:
     Type: AWS::EC2::Route
-    DependsOn: MyInternetGateway
+    DependsOn: InternetGateway
     Properties:
        RouteTableId:
          Ref: PublicRouteTable
        DestinationCidrBlock: 0.0.0.0/0
-       GatewayId: !Ref MyInternetGateway
+       GatewayId: !Ref InternetGateway
 
   
 
@@ -139,35 +139,35 @@ Resources:
        RouteTableId:
          Ref: PrivateRouteTable
        DestinationCidrBlock: 0.0.0.0/0
-       NatGatewayId: !Ref MyNATGateway
+       NatGatewayId: !Ref NATGateway
   
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      SubnetId: !Ref MyPublicSubnet
+      SubnetId: !Ref PublicSubnet
       RouteTableId: !Ref PublicRouteTable
 
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      SubnetId: !Ref MyPrivateSubnet
+      SubnetId: !Ref PrivateSubnet
       RouteTableId: !Ref PrivateRouteTable
 
-  MyNATGateway:
+  NATGateway:
      Type: AWS::EC2::NatGateway
      Properties:
         AllocationId:
            Fn::GetAtt:
            - EIP
            - AllocationId
-        SubnetId: !Ref MyPublicSubnet
+        SubnetId: !Ref PublicSubnet
         Tags:
         - Key: Name
-          Value: MyNATGateway
+          Value: NATGateway
   EIP:
-     DependsOn: MyInternetGateway
+     DependsOn: InternetGateway
      Type: AWS::EC2::EIP
      Properties:
-        Domain: MyVPC
+        Domain: VPC
 
 
