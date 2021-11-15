@@ -37,13 +37,6 @@ pipeline {
         }
     }
   
-        stage('Slack notification') {
-
-        steps {
-            SlackNotification()
-        }
-    }
-  
   }
 
 }
