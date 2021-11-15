@@ -18,23 +18,23 @@ pipeline {
         }
     }
        
-        stage('Deploying on ecs') {
-        when {
-            expression { params.ACTION == 'deploy-cluster' }
-        }
-        steps {
-        sh "aws cloudformation deploy --template-file ecs.yml --stack-name ${STACK_NAME} --region us-east-1"    
-        }
-    }
+    //     stage('Deploying on ecs') {
+    //     when {
+    //         expression { params.ACTION == 'deploy-cluster' }
+    //     }
+    //     steps {
+    //     sh "aws cloudformation deploy --template-file ecs.yml --stack-name ${STACK_NAME} --region us-east-1"    
+    //     }
+    // }
 
-        stage('Delete cluster') {
-        when {
-            expression { params.ACTION == 'delete-cluster' }
-        }
-        steps {
-        sh "aws cloudformation delete-stack --stack-name ${STACK_NAME} --region us-east-1"    
-        }
-    }
+    //     stage('Delete cluster') {
+    //     when {
+    //         expression { params.ACTION == 'delete-cluster' }
+    //     }
+    //     steps {
+    //     sh "aws cloudformation delete-stack --stack-name ${STACK_NAME} --region us-east-1"    
+    //     }
+    // }
   }
 }
 
