@@ -26,7 +26,6 @@ pipeline {
         sh "aws cloudformation deploy --template-file ecs.yml --stack-name ${STACK_NAME}"    
         }
     }
-
     //     stage('Delete cluster') {
     //     when {
     //         expression { params.ACTION == 'delete-cluster' }
