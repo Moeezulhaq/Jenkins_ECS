@@ -27,7 +27,6 @@ pipeline {
         }
     }
     
-
     //     stage('Delete cluster') {
     //     when {
     //         expression { params.ACTION == 'delete-cluster' }
