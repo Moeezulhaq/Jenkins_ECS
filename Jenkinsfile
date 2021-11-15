@@ -11,12 +11,12 @@ pipeline {
 
   stages { 
 
-        stage('Building & tagging Image') {
+    //     stage('Building & tagging Image') {
 
-        steps {
-        sh "./Tag.sh"  
-        }
-    }
+    //     steps {
+    //     sh "./Tag.sh"  
+    //     }
+    // }
        
         stage('Deploying on ecs') {
         when {
@@ -27,13 +27,13 @@ pipeline {
         }
     }
 
-        stage('Delete cluster') {
-        when {
-            expression { params.ACTION == 'delete-cluster' }
-        }
-        steps {
-        sh "aws cloudformation delete-stack --stack-name ${STACK_NAME}"    
-        }
-    }
+    //     stage('Delete cluster') {
+    //     when {
+    //         expression { params.ACTION == 'delete-cluster' }
+    //     }
+    //     steps {
+    //     sh "aws cloudformation delete-stack --stack-name ${STACK_NAME}"    
+    //     }
+    // }
   }
 }
