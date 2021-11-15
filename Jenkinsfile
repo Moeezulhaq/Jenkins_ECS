@@ -27,14 +27,14 @@ pipeline {
         }
     }
 
-    //     stage('Delete cluster') {
-    //     when {
-    //         expression { params.ACTION == 'delete-cluster' }
-    //     }
-    //     steps {
-    //     sh "aws cloudformation delete-stack --stack-name ${STACK_NAME} --region us-east-1"    
-    //     }
-    // }
+        stage('Delete cluster') {
+        when {
+            expression { params.ACTION == 'delete-cluster' }
+        }
+        steps {
+        sh "aws cloudformation delete-stack --stack-name ${STACK_NAME} --region us-east-1"    
+        }
+    }
   }
 }
 
