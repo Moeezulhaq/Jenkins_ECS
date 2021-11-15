@@ -86,7 +86,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId:
-        Ref: MyVPC
+        Ref: VPC
       CidrBlock: !Ref publicsubnetcidr
       AvailabilityZone: !Ref MyAvailabilityZone
       Tags:
@@ -97,7 +97,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId:
-        Ref: MyVPC
+        Ref: VPC
       CidrBlock: !Ref privatesubnetcidr
       AvailabilityZone: !Ref MyAvailabilityZone
       Tags:
@@ -108,7 +108,7 @@ Resources:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId:  
-        Ref: MyVPC
+        Ref: VPC
       Tags:
       - Key: Name
         Value: PublicRouteTable
@@ -128,7 +128,7 @@ Resources:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId:  
-        Ref: MyVPC
+        Ref: VPC
       Tags:
       - Key: Name
         Value: PrivateRouteTable
