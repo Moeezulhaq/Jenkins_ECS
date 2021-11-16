@@ -11,7 +11,9 @@ pipeline {
 
   stages { 
         stage('Building & tagging Image') {
-
+        when {
+            expression { params.ACTION == 'deploy-cluster' }
+        }
         steps {
         sh "./Tag.sh"  
         }
