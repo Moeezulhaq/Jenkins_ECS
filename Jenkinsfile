@@ -36,12 +36,12 @@ pipeline {
         }
     }
   
-        stage('Shared library') {
+    //     stage('Shared library') {
 
-        steps {
-            SlackNotification()
-        }
-    }  
+    //     steps {
+    //         SlackNotification()
+    //     }
+    // }  
   }
   post
   {
