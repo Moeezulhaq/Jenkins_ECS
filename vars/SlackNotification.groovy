@@ -3,8 +3,8 @@ def call () {
 <<<<<<< HEAD
 =======
 //     sh "echo hello world"
-  post
-  {
+//   post
+//   {
 >>>>>>> ba7ed15362fe88d2bd39cf58c1e43df164257ad0
       always
       {
@@ -12,6 +12,6 @@ def call () {
       }
 <<<<<<< HEAD
 =======
-  }
+//   }
 >>>>>>> ba7ed15362fe88d2bd39cf58c1e43df164257ad0
 }
