@@ -2,20 +2,20 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Parameters:
   MyKeyName:
-    Default: Moeez.Nv
+    Default: Moeezore
     Description: Select the key name from the list
     Type: AWS::EC2::KeyPair::KeyName
   MyAvailabilityZone:
     Description: Select the AZ
     Type: String
-    Default: "us-east-1a"
+    Default: "us-west-2a"
     AllowedValues:
-      - us-east-2a
-      - us-east-2b    
-      - us-east-2c
-      - us-east-1a
-      - us-east-1b
-      - us-east-1c
+      - us-west-2a
+      - us-west-2b    
+      - us-west-2c
+      - us-west-1a
+      - us-west-1b
+      - us-west-1c
   MyInstanceType:
     Description: select EC2 instance type from list.
     Type: String
@@ -40,8 +40,6 @@ Parameters:
     Type: String
     Default: "10.0.2.0/24"    
 
-
-
 Resources:
   VPC:
     Type: AWS::EC2::VPC
@@ -52,7 +50,9 @@ Resources:
       Tags:
        - Key: Name
          Value: VPC
-  
+       - Key: autodelete
+         Value: false
+         
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -68,6 +68,9 @@ Resources:
           FromPort: '0'          
           ToPort: '65535'
           CidrIp: 0.0.0.0/0
+      Tags:
+       - Key: autodelete
+         Value: false
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
@@ -92,7 +95,9 @@ Resources:
       Tags:
       - Key: Name
         Value:  PublicSubnet
-    
+      - Key: autodelete
+        Value: false
+        
   PrivateSubnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -103,6 +108,8 @@ Resources:
       Tags:
       - Key: Name
         Value: PrivateSubnet
+      - Key: autodelete
+        Value: false
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
@@ -112,6 +119,8 @@ Resources:
       Tags:
       - Key: Name
         Value: PublicRouteTable
+      - Key: autodelete
+        Value: false
 
   PublicRoute:
     Type: AWS::EC2::Route
@@ -122,8 +131,6 @@ Resources:
        DestinationCidrBlock: 0.0.0.0/0
        GatewayId: !Ref InternetGateway
 
-  
-
   PrivateRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -132,6 +139,8 @@ Resources:
       Tags:
       - Key: Name
         Value: PrivateRouteTable
+      - Key: autodelete
+        Value: false
 
   PrivateRoute:
     Type: AWS::EC2::Route
@@ -140,18 +149,20 @@ Resources:
          Ref: PrivateRouteTable
        DestinationCidrBlock: 0.0.0.0/0
        NatGatewayId: !Ref NATGateway
-  
+       
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref PublicSubnet
       RouteTableId: !Ref PublicRouteTable
 
+
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref PrivateSubnet
       RouteTableId: !Ref PrivateRouteTable
+
 
   NATGateway:
      Type: AWS::EC2::NatGateway
@@ -164,10 +175,15 @@ Resources:
         Tags:
         - Key: Name
           Value: NATGateway
+        - Key: autodelete
+          Value: false
+
   EIP:
      DependsOn: InternetGateway
      Type: AWS::EC2::EIP
      Properties:
         Domain: VPC
-
+        Tags:
+        - Key: autodelete
+          Value: false
 
