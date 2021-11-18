@@ -1,4 +1,5 @@
 @Library("shared-library") _
+@Library('shared-library@notification') _
 pipeline {
   agent any
   parameters {
