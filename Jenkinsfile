@@ -37,13 +37,11 @@ pipeline {
         }
     }
   }
-  post
-  {
-      always
-      {
-        // script{
-        SlackNotification.notification 
-      }
-      // }
-  }  
+  // post
+  // {
+  //     always
+  //     {
+  //       SlackNotification.notification 
+  //     }
+  // }  
 }
