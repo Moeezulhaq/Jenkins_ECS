@@ -47,9 +47,9 @@ pipeline {
   {
       always
       {
-        script{
+        // script{
         SlackNotification.notification () 'test'
       }
-      }
+      // }
   }  
 }
