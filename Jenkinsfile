@@ -1,4 +1,5 @@
 @Library("shared-library") _
+SlackNotification.
 pipeline {
   agent any
   parameters {
@@ -46,7 +47,7 @@ pipeline {
   {
       always
       {
-        SlackNotification.notification(notification)
+        SlackNotification.notification 'checking'
       }
   }  
 }
