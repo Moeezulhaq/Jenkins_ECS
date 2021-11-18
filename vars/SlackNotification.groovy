@@ -1,5 +1,4 @@
-#!/bin/bash/env groovy
-
+// vars/SlackNotification.groovy
 
 def notification () {
         
