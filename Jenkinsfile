@@ -42,11 +42,11 @@ pipeline {
         }
     }  
   }
-  // post
-  // {
-  //     always
-  //     {
-  //       SlackNotification.notification 'slackSend'
-  //     }
-  // }  
+  post
+  {
+      always
+      {
+        SlackNotification 'slackSend'
+      }
+  }  
 }
