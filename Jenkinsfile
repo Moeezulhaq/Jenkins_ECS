@@ -35,18 +35,18 @@ pipeline {
         sh "aws cloudformation delete-stack --stack-name ${STACK_NAME} --region us-east-1"    
         }
     }
-        stage('notification') {
+    //     stage('notification') {
 
-        steps {
-          SlackNotification()
-        }
-    }  
+    //     steps {
+    //       SlackNotification()
+    //     }
+    // }  
   }
   post
   {
       always
       {
-        SlackNotification.notification 
+        SlackNotification()
       }
   }  
 }
