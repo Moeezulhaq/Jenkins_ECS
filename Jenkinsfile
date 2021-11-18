@@ -1,5 +1,5 @@
 @Library("shared-library") _
-SlackNotification.
+SlackNotification.notification 'slackSend'
 pipeline {
   agent any
   parameters {
