@@ -38,7 +38,7 @@ pipeline {
         stage('notification') {
 
         steps {
-          SlackNotification(noti)
+          SlackNotification()
         }
     }  
   }
@@ -46,7 +46,7 @@ pipeline {
   {
       always
       {
-        SlackNotification()
+        SlackNotification(noti)
       }
   }  
 }
