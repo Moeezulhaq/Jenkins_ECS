@@ -38,12 +38,11 @@ pipeline {
     // }
   
   }
-  post
-  {
-    always
-      {
+  post{
+    always{
+
     script{
-        SlackNotification.notification ()
+        SlackNotification.notification()
       }
     }
   }  
