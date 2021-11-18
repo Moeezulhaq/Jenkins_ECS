@@ -46,7 +46,7 @@ pipeline {
   {
       always
       {
-        SlackNotification.notification "slackSend"
+        SlackNotification.notification 
       }
   }  
 }
