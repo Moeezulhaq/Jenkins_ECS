@@ -45,10 +45,10 @@ pipeline {
   {
       always
       {
-        script{
-              SlackNotification.notification ()
+        // script{
+        SlackNotification.notification ()
       }
-      }
+      // }
   }  
 }
 }
