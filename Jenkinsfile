@@ -42,7 +42,7 @@ pipeline {
 
     script{
         SlackNotification.notification() 
-        SlackNotification.hello
+        SlackNotification.hello()
       }
     }
   }  
