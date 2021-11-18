@@ -1,4 +1,4 @@
-@Library("shared-library") _
+@Library("shared-library@main") _
 pipeline {
   agent any
   parameters {
@@ -41,7 +41,7 @@ pipeline {
     always{
 
     script{
-        SlackNotification.notification(currentBuild.currentResult)
+        SlackNotification.notification()
       }
     }
   }  
