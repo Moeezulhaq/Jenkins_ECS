@@ -46,7 +46,7 @@ Resources:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
           Subnets:
-            - subnet-03844bef18e14ffc1	
+            - subnet-03844bef18e14ffc1
           SecurityGroups:
             - !Ref ServiceSecurityGroup
             
