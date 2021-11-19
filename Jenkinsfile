@@ -41,8 +41,8 @@ pipeline {
     always{
 
     script{
-        SlackNotification.any(10,5) 
-        SlackNotification.multi(10,5)
+        SlackNotification.notification() 
+        SlackNotification.hello()
       }
     }
   }  
