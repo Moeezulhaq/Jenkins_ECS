@@ -42,8 +42,6 @@ pipeline {
 
       script{
         def util = new SlackNotification()
-        util.hello()
-        def util = new SlackNotification()
         util.notification()
       }
     }
