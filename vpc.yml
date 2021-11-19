@@ -98,6 +98,45 @@ Resources:
       - Key: autodelete
         Value: false
         
+  PublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 10.0.7.0/24
+      AvailabilityZone: !Ref MyAvailabilityZone
+      Tags:
+      - Key: Name
+        Value:  PublicSubnet1
+      - Key: autodelete
+        Value: false
+
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 10.0.6.0/24
+      AvailabilityZone: !Ref MyAvailabilityZone
+      Tags:
+      - Key: Name
+        Value:  PublicSubnet2
+      - Key: autodelete
+        Value: false
+
+  PublicSubnet3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 10.0.5.0/24
+      AvailabilityZone: !Ref MyAvailabilityZone
+      Tags:
+      - Key: Name
+        Value:  PublicSubnet3
+      - Key: autodelete
+        Value: false
+
   PrivateSubnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -156,6 +195,23 @@ Resources:
       SubnetId: !Ref PublicSubnet
       RouteTableId: !Ref PublicRouteTable
 
+  PublicSubnetRouteTableAssociation1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet1
+      RouteTableId: !Ref PublicRouteTable
+
+  PublicSubnetRouteTableAssociation2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet2
+      RouteTableId: !Ref PublicRouteTable
+
+  PublicSubnetRouteTableAssociation3:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet3
+      RouteTableId: !Ref PublicRouteTable
 
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
