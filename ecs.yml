@@ -14,6 +14,7 @@ Resources:
     Properties:
       GroupName: ServiceSecurityGroup
       GroupDescription: Security group for service
+      VpcId: vpc-09b38b2396e241112
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
