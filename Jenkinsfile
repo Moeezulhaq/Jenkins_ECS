@@ -41,8 +41,10 @@ pipeline {
     always{
 
       script{
+        def util = new SlackNotification()
+        util.hello()
         // SlackNotification.notification() 
-        SlackNotification.hello()
+        // SlackNotification.hello()
       }
     }
   }  
