@@ -24,7 +24,7 @@ pipeline {
             expression { params.ACTION == 'deploy-cluster' }
         }
         steps {
-        sh "aws cloudformation deploy --template-file ecs.yml --stack-name ${STACK_NAME} --region us-east-1"    
+        sh "aws cloudformation deploy --template-file ecs.yml --stack-name ${STACK_NAME} --region us-west-2"    
         }
     }
         stage('Delete cluster') {
@@ -32,7 +32,7 @@ pipeline {
             expression { params.ACTION == 'delete-cluster' }
         }
         steps {
-        sh "aws cloudformation delete-stack --stack-name ${STACK_NAME} --region us-east-1"    
+        sh "aws cloudformation delete-stack --stack-name ${STACK_NAME} --region us-west-2"    
         }
     }
   
