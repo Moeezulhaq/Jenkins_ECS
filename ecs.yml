@@ -29,7 +29,7 @@ Resources:
       NetworkMode: awsvpc
       ContainerDefinitions:
         - Name: myservice-container
-          Image: public.ecr.aws/y2a9o9h4/jenkins-ecs:latest
+          Image: public.ecr.aws/y2a9o9h4/jenkins:latest
           PortMappings:
             - ContainerPort: 80
       RequiresCompatibilities:
