@@ -4,13 +4,8 @@
 //         slackSend channel: 'moeez_testing', message: "Please Find status of Job status- ${currentBuild.currentResult} Build Name-${env.JOB_NAME} Build Number-${env.BUILD_NUMBER} Build URL-${env.BUILD_URL}"
 // }
 
-def any(x,y){
+def hello(){
         
-    echo "hello world ${x} ${y}"
-}
-
-def multi(x,y){
-        
-    echo "hello  ${x} ${y}"
+    echo "hello world"
 }
 
