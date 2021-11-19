@@ -40,10 +40,10 @@ pipeline {
   post{
     always{
 
-      script{
-        def util = new SlackNotification()
-        util.notification()
-      }
+      script {
+          library 'notification'
+          def util = new SlackNotification()
+       }
     }
   }  
 }
