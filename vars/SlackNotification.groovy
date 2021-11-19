@@ -1,13 +1,16 @@
-#!/usr/bin/env groovy
 
-def notification(String value){
+// def notification(String value){
         
-        slackSend channel: 'moeez_testing', message: "Please Find status of Job status- ${currentBuild.currentResult} Build Name-${env.JOB_NAME} Build Number-${env.BUILD_NUMBER} Build URL-${env.BUILD_URL}"
+//         slackSend channel: 'moeez_testing', message: "Please Find status of Job status- ${currentBuild.currentResult} Build Name-${env.JOB_NAME} Build Number-${env.BUILD_NUMBER} Build URL-${env.BUILD_URL}"
+// }
+
+def add(x,y){
+        
+    echo "hello world ${x} ${y}"
 }
 
-def hello(){
+def multi(x,y){
         
-    sh "echo hello world"
+    echo "hello  ${x} ${y}"
 }
-
 
