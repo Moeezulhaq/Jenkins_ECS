@@ -129,8 +129,8 @@ Resources:
     Properties:
       VpcId:
         Ref: VPC
-      CidrBlock: 10.0.5.0/24
-      AvailabilityZone: !Ref MyAvailabilityZone
+      CidrBlock: 10.0.8.0/24
+      AvailabilityZone: us-west-2c
       Tags:
       - Key: Name
         Value:  PublicSubnet3
