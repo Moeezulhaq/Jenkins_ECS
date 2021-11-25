@@ -41,7 +41,7 @@ Resources:
       ServiceName: !Sub myservice
       Cluster: !Ref Cluster
       TaskDefinition: !Ref TaskDefinition
-      DesiredCount: 1
+      DesiredCount: 20
       LaunchType: FARGATE
       NetworkConfiguration:
         AwsvpcConfiguration:
