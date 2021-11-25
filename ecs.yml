@@ -41,12 +41,12 @@ Resources:
       ServiceName: !Sub myservice
       Cluster: !Ref Cluster
       TaskDefinition: !Ref TaskDefinition
-      DesiredCount: 1
+      DesiredCount: 10
       LaunchType: FARGATE
       NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
           Subnets:
-            - subnet-092a9bb9a9d454c6d
+            - subnet-0d4ed9feeb91856e2
           SecurityGroups:
             - sg-0963c993ee702158f
