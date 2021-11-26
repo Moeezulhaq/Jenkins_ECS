@@ -8,4 +8,8 @@
 # CMD ["apache2ctl","-D","FOREGROUND"]
 
 FROM nginx
+RUN cd /var/www
+RUN mkdir tutorial
+RUN cd tutorial
+COPY index.html /index.html
 EXPOSE 80
